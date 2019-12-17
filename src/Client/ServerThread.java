@@ -73,13 +73,8 @@ public class ServerThread implements Runnable {
                                 chatBox.setText(chatBox.getText()+"\n"+text.split(" ",2)[1]);
                                 break;
                             case "LIST":
-                                onlineClients = "";
-                                for(String name : text.substring(5).split(" ")){
-                                    //if(name.equals(userName)) continue;
-                                    onlineClients = onlineClients +name +"\n";
-                                }
-                                usersOnline.clear();
-                                usersOnline.setText(onlineClients);
+                                System.out.print(text.substring(5).replace(" ", "\n"));
+                                usersOnline.setText(text.substring(5).replace(" ", "\n"));
                                 break;
                         }
                     }

@@ -15,7 +15,6 @@ import java.util.Scanner;
 public class ClientThread implements Runnable {
     private Socket socket;
     private String username;
-    private InetAddress ip;
     private PrintWriter clientOut;
     private ChatServer server;
     private boolean alive;

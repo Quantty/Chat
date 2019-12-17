@@ -10,18 +10,27 @@ import java.util.ArrayList;
 public class ChatServer {
 
     private static final int portNumber = 5000;
-
+    private static ChatServer ServerListener = null;
     private int serverPort;
     private ArrayList<ClientThread> clients;
 
     public static void main(String[] args){
 
-        ChatServer server = new ChatServer(portNumber);
+        ChatServer server = ChatServer.getInstance();
         server.startServer();
     }
 
-    public ChatServer(int portNumber){
+    private ChatServer(int portNumber){
         this.serverPort = portNumber;
+    }
+
+    public static ChatServer getInstance(){
+        synchronized (ChatServer.class){
+            if(ServerListener == null){
+                ServerListener = new ChatServer(portNumber);
+            }
+        }
+        return  ServerListener;
     }
 
     public ArrayList<ClientThread> getClients(){

@@ -1,4 +1,5 @@
 package Client;
+import UI.UIChat;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -9,9 +10,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.Socket;
-/**
- * Created by Quanticus on 10/4/2017.
- */
+
 public class Client {
     @FXML public VBox vbox ;
     @FXML public TextField usernameField,ipField,portField;
@@ -63,10 +62,12 @@ public class Client {
         this.serverHost = ipField.getText();
         this.portNumber = Integer.valueOf(portField.getText());
 
-        buildChat();
+        buildChat(userName, vbox);
 
         startClient();
     }
+
+
 
     private void startClient(){
         try{
@@ -90,7 +91,7 @@ public class Client {
         }
     }
 
-    public void buildChat(){
+    public void buildChat(String userName, VBox vbox){
         vbox.getChildren().clear();
         Label usernameLabel = new Label("Username :");
         HBox line1 = new HBox();
@@ -120,5 +121,4 @@ public class Client {
         vbox.getChildren().addAll(line1,line2,line3);
 
     }
-
 }
