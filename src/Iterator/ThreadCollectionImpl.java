@@ -42,7 +42,6 @@ public class ThreadCollectionImpl implements ThreadCollection {
         }
         @Override
         public ClientThread next(){
-            System.out.println("next is called");
             ClientThread obj = threads.get(position);
             this.position ++;
             return obj;

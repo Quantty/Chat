@@ -24,6 +24,6 @@ public class CheckAlive implements Runnable {
             }
             alive = clientThread.getAlive();
         }
-        server.getClients().remove(clientThread);
+        server.getClients().removeThread(clientThread);
     }
 }

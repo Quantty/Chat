@@ -22,7 +22,6 @@ public class ServerThread implements Runnable {
     @FXML private TextArea usersOnline,chatBox;
     private final LinkedList<String> messagesToSend;
     private boolean hasMessages = false;
-    private String onlineClients = "";
 
     public ServerThread(Socket socket, String userName,TextArea usersOnline,TextArea chatBox ){
         this.socket = socket;
@@ -69,7 +68,7 @@ public class ServerThread implements Runnable {
                         String text = serverIn.nextLine();
                         switch(text.split(" ",3)[0]){
                             case "DATA":
-                               // System.out.println(text.split(" ",2)[1]);
+                                System.out.println(text.split(" ",2)[1]);
                                 chatBox.setText(chatBox.getText()+"\n"+text.split(" ",2)[1]);
                                 break;
                             case "LIST":

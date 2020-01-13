@@ -1,5 +1,7 @@
 package Server;
 
+import Iterator.ThreadCollectionImpl;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -12,7 +14,8 @@ public class ChatServer {
     private static final int portNumber = 5000;
     private static ChatServer ServerListener = null;
     private int serverPort;
-    private ArrayList<ClientThread> clients;
+    //private ArrayList<ClientThread> clients;
+    private ThreadCollectionImpl collection;
 
     public static void main(String[] args){
 
@@ -33,12 +36,12 @@ public class ChatServer {
         return  ServerListener;
     }
 
-    public ArrayList<ClientThread> getClients(){
-        return clients;
+    public ThreadCollectionImpl getClients(){
+        return collection;
     }
 
     private void startServer(){
-        clients = new ArrayList<>();
+        collection = new ThreadCollectionImpl();
         ServerSocket serverSocket;
         try {
             serverSocket = new ServerSocket(serverPort);
@@ -60,7 +63,7 @@ public class ChatServer {
                 ClientThread client = new ClientThread(this, socket);
                 Thread thread = new Thread(client);
                 thread.start();
-                clients.add(client);
+                collection.addThread(client);
             } catch (IOException ex){
                 System.out.println("Accept failed on : "+serverPort);
             }
